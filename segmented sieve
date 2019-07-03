@@ -1,0 +1,40 @@
+import java.util.*;
+public class segsie{
+	public static void main(String s[]){
+		Scanner sc = new Scanner(System.in);
+		int a = 25;
+		int b = 36;
+		ArrayList<Integer> al = new ArrayList<>();
+		int arr[] =  new int[(int)Math.sqrt(b)+1];
+		arr[2]=1;
+		for(int i=3;i<=Math.sqrt(b);i+=2){
+			arr[i]=1;
+		}
+		for(int i=3;i<=Math.sqrt(b);i+=2){
+			if(arr[i]==1){
+				for(int j=i*i;j<=Math.sqrt(b);j+=(2*i)){
+					arr[j]=0;
+				}
+			}
+		}
+		for(int i=2;i<=Math.sqrt(b);i++){
+			if(arr[i]==1)
+				al.add(i);
+		}
+		arr = new int[(b-a)+1];
+		for(int i=0;i<(b-a)+1;i++){
+			arr[i]=1;
+		}
+		for(int i=0;i<al.size();i++){
+			for(int j=a;j<=b;j++){
+				if(j%al.get(i)==0){
+					arr[j-a]=0;
+				}
+			}
+		}
+		for(int i=0;i<(b-a)+1;i++){
+			if(arr[i]==1)
+				System.out.println(i+a);
+		}
+	}
+}
